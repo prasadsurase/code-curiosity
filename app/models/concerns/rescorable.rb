@@ -15,6 +15,13 @@ module Rescorable
 
       event :submit do
         transitions from: :new, to: :submitted
+
+        # Notify the judges of the request.
+        after do
+          User.judges.pluck(:email).each do |email|
+            RescoreMailer.notify_judge(self.class.name, self.id.to_s, email).deliver_later
+          end
+        end
       end
 
       event :accept do

@@ -1,0 +1,12 @@
+%h4 Hello Judge,
+%p
+  = link_to @resource.user.github_handle, user_url(@resource.user)
+  has sent a request to rescore an #{@resource.class.name} with id #{@resource.id.to_s}.
+%p
+  %dl.dl-horizontal
+    %dt User Name
+    %dd= @resource.user.name
+    %dt Auto Score
+    %dd= @resource.auto_score
+    %dt Rescore Reason
+    %dd= @resource.dev_comment
