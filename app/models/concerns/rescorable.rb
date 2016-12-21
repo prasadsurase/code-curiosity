@@ -1,4 +1,4 @@
-module Rescore
+module Rescorable
   extend ActiveSupport::Concern
 
   included do

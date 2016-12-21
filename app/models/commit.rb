@@ -2,7 +2,7 @@ class Commit
   include Mongoid::Document
   include Mongoid::Timestamps
   include JudgeScoringHelper
-  include Rescore
+  include Rescorable
 
   COMMIT_TYPE = {score: 'Scores', commit: 'Commits', activity: 'Activities'}
 

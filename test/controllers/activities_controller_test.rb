@@ -69,6 +69,19 @@ class ActivitiesControllerTest < ActionController::TestCase
     assert assigns(:activities).count, 0
   end
 
+  test 'should set commit to be rescored' do
+    commit = create :commit, user: user, repository: repo
+    assert commit.new?
+
+    sign_in user
+    xhr :put, :rescore, resource_type: "Commit", comment: "some reason goes here", id: commit.id
+    assert_response :success
+    assert_template :rescore
+    commit.reload
+    assert commit.submitted?
+    assert_equal 'some reason goes here', commit.dev_comment
+  end
+
   test 'should retrive activities in descending order of commented_on' do
     skip 'pending'
   end
