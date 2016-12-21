@@ -30,6 +30,9 @@ Rails.application.routes.draw do
       get 'commits'
       get 'activities'
     end
+    member do
+      put :rescore
+    end
   end
 
   namespace :admin do

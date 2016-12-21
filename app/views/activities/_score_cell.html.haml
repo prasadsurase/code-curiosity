@@ -2,9 +2,13 @@
   - if resource.final_score.blank?
     In Review
   - elsif resource.final_score == 0
+    - if resource.instance_of?(Commit)
+      = render partial: 'activities/rescore_status', locals: { resource: resource }
     %ul.score-bar
       %li.score.zero
   - else
+    - if resource.instance_of?(Commit)
+      = render partial: 'activities/rescore_status', locals: { resource: resource }
     %ul.score-bar
       - resource.final_score.times do |i|
         %li.score{class: score_css_class(resource.final_score)}

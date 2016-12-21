@@ -1,0 +1,15 @@
+- if Round.opened == current_round
+  - if resource.new?
+    %button.btn.btn-primary.btn-xs.pull-left{data: {toggle: 'modal', target: '#rescoreModal', id: resource.id, 'type': resource.class},
+      rel: 'tooltip', 'data-original-title': 'Request a Rescore'}
+      %span.glyphicon.glyphicon-refresh{'aria-hidden': true}
+
+  - elsif resource.submitted?
+    %span.label.label-default.pull-left{data: {toggle: 'tooltip', title: 'Rescoring in process'}}
+      %span.glyphicon.glyphicon-hourglass{'aria-hidden': true}
+  - elsif resource.accepted?
+    %span.label.label-default.pull-left{data: {toggle: 'tooltip', title: 'Rescored'}}
+      %span.glyphicon.glyphicon-ok{'aria-hidden': true}
+  - elsif resource.rejected?
+    %span.label.label-default.pull-left{data: {toggle: 'tooltip', title: 'Rescoring Rejected'}}
+      %span.glyphicon.glyphicon-remove{'aria-hidden': true}

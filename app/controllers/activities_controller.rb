@@ -14,6 +14,12 @@ class ActivitiesController < ApplicationController
     get_activities
   end
 
+  def rescore
+    @resource = params[:resource_type].constantize.find(params[:id])
+    @resource.set({dev_comment: params[:comment]})
+    @resource.submit!
+  end
+
   private
 
   def get_commits

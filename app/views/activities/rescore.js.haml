@@ -1,0 +1,4 @@
+var modal = $('#rescoreModal').modal();
+modal.modal('hide');
+- if @resource.instance_of?(Commit)
+  $($("tr[data-commit='#{@resource.id.to_s}'] td.score")[0]).html("#{j render partial: 'activities/score_cell', locals: { resource: @resource } }");

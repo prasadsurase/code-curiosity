@@ -10,3 +10,20 @@
     = render partial: 'commit', collection: @commits
 .pagination-container
   = paginate @commits, params: { controller: 'activities', action: 'commits'}, remote: true
+
+#rescoreModal.modal.fade{"aria-labelledby" => "rescoreModalLabel", role: "dialog", :tabindex => "-1"}
+  .modal-dialog{role: "document"}
+    .modal-content
+      = form_tag rescore_activity_path(id: ''), method: :put, remote: true do |f|
+        .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+            %span{"aria-hidden" => "true"} ×
+          %h4#rescoreModalLabel.modal-title Request Rescore
+        .modal-body
+          = hidden_field_tag :resource_type
+          .form-group
+            %label.control-label{for: 'Comment'} Comment:
+            = text_area_tag :comment, nil, class: 'form-control'
+        .modal-footer
+          %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Cancel
+          = submit_tag 'Submit', class: 'btn btn-primary'

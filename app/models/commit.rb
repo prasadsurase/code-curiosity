@@ -2,6 +2,7 @@ class Commit
   include Mongoid::Document
   include Mongoid::Timestamps
   include JudgeScoringHelper
+  include Rescore
 
   COMMIT_TYPE = {score: 'Scores', commit: 'Commits', activity: 'Activities'}
 
@@ -51,7 +52,7 @@ class Commit
   private
 
   def set_round
-    # FIXME: This code was added to address a corner case for commits appearing in next round 
+    # FIXME: This code was added to address a corner case for commits appearing in next round
     # instead of the last month. However, it will impact scoring and bonus points. Keeping this
     # line commented in case we find a better fix. - Gautam
 
